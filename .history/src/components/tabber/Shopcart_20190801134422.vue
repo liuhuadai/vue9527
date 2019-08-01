@@ -5,10 +5,8 @@
       <div class="mui-card" v-for="item in goodslist" :key="item.godId">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <mt-switch
-              v-model="$store.getters.getGoodsSelected[item.godId]"
-              @change="selectedChanged(item.godId, $store.getters.getGoodsSelected[item.godId])"
-            ></mt-switch>
+            <mt-switch v-model="$store.getters.getGoodsSelected[item.godId]"  
+            @change="selectedChanged(item.godId, $store.getters.getGoodsSelected[item.godId])" ></mt-switch>
             <img :src="item.phos[0]" />
             <div class="info">
               <h1>{{ item.name }}</h1>
@@ -33,21 +31,20 @@
             <p>总计（不含运费）</p>
             <p>
               已勾选商品
-              <span class="red">{{ $store.getters.getGoodsCountAndAmount.count }}</span>
-              件， 总价
-              <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span>
+              <span class="red"></span> 件， 总价
+              <span class="red">￥</span>
             </p>
           </div>
-          <mt-button type="danger" @click.native="handleClick">去结算</mt-button>
+          <mt-button type="danger">去结算</mt-button>
         </div>
       </div>
     </div>
 
+    <p></p>
   </div>
 </template>
 
 <script>
-import { MessageBox } from 'mint-ui';
 import numbox from "../subcomponents/shopcar_numbox.vue";
 
 export default {
@@ -79,11 +76,8 @@ export default {
     },
     selectedChanged(id, val) {
       // 每当点击开关，把最新的 快关状态，同步到 store 中
-      console.log(id + " --- " + val);
+       console.log(id + " --- " + val);
       this.$store.commit("updateGoodsSelected", { id, selected: val });
-    },
-    handleClick(){
-        MessageBox('提示', '当前还未开通支付功能！');
     }
   },
   components: {

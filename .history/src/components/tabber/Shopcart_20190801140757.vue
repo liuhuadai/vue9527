@@ -83,7 +83,7 @@ export default {
       this.$store.commit("updateGoodsSelected", { id, selected: val });
     },
     handleClick(){
-        MessageBox('提示', '当前还未开通支付功能！');
+        MessageBox('提示', '当前还没开通支付功能！');
     }
   },
   components: {

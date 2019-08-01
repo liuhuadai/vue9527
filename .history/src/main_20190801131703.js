@@ -65,18 +65,8 @@ const store = new Vuex.Store({
       state.car.some(item=>{
         if(item.id==goodsinfo.id){
           item.count = goodsinfo.count
-          return true;
         }
       })
-      localStorage.setItem('car', JSON.stringify(state.car))
-    },
-    updateGoodsSelected(state, info) {
-      state.car.some(item => {
-        if (item.id == info.id) {
-          item.selected = info.selected
-        }
-      })
-      // 把最新的 所有购物车商品的状态保存到 store 中去
       localStorage.setItem('car', JSON.stringify(state.car))
     }
   },
@@ -84,34 +74,14 @@ const store = new Vuex.Store({
     getAllCount(state){
       var c = 0;
       state.car.forEach(item=>{
-        c+=parseInt(item.count);
+        c+=item.count;
       })
-      return parseInt(c);
-    },
-    getGoodsCount(state){
-      var o ={};
-      state.car.forEach(item=>{
-        o[item.id]=item.count
-      })
-      return o;
+      return c;
     },
     getGoodsSelected(state){
       var o ={};
       state.car.forEach(item=>{
-        o[item.id]=item.selected
-      })
-      return o;
-    },
-    getGoodsCountAndAmount(state){
-      var o = {
-        count:0,
-        amount:0
-      };
-      state.car.forEach(item=>{
-        if(item.selected){
-          o.count+=item.count;
-          o.amount+=(item.count*item.price)
-        }
+        o[item.id]=item.count
       })
       return o;
     }

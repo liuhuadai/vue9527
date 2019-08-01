@@ -84,7 +84,7 @@ const store = new Vuex.Store({
     getAllCount(state){
       var c = 0;
       state.car.forEach(item=>{
-        c+=parseInt(item.count);
+        c+=item.count;
       })
       return parseInt(c);
     },
@@ -99,19 +99,6 @@ const store = new Vuex.Store({
       var o ={};
       state.car.forEach(item=>{
         o[item.id]=item.selected
-      })
-      return o;
-    },
-    getGoodsCountAndAmount(state){
-      var o = {
-        count:0,
-        amount:0
-      };
-      state.car.forEach(item=>{
-        if(item.selected){
-          o.count+=item.count;
-          o.amount+=(item.count*item.price)
-        }
       })
       return o;
     }

@@ -85,7 +85,7 @@ export default {
     addToShopCar() {
       this.ballFlag = !this.ballFlag;
       var goodsinfo = {
-        id:parseInt(this.id),
+        id:this.id,
         count:this.selectedCount,
         price:this.goodsinfo.newPrice,
         selected:true

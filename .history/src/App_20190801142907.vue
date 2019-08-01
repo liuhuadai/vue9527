@@ -47,7 +47,7 @@ export default {
     }
   },
   created() {
-    this.flag=this.$route.path==='/home'?false:true;
+    this.flag=$route.path==='/home'?false:true;
   },
   watch: {
     '$route.path':function(newVal){

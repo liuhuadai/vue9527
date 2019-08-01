@@ -38,16 +38,16 @@
               <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span>
             </p>
           </div>
-          <mt-button type="danger" @click.native="handleClick">去结算</mt-button>
+          <mt-button type="danger">去结算</mt-button>
         </div>
       </div>
     </div>
 
+    <p>{{ $store.getters.getGoodsSelected }}</p>
   </div>
 </template>
 
 <script>
-import { MessageBox } from 'mint-ui';
 import numbox from "../subcomponents/shopcar_numbox.vue";
 
 export default {
@@ -81,9 +81,6 @@ export default {
       // 每当点击开关，把最新的 快关状态，同步到 store 中
       console.log(id + " --- " + val);
       this.$store.commit("updateGoodsSelected", { id, selected: val });
-    },
-    handleClick(){
-        MessageBox('提示', '当前还未开通支付功能！');
     }
   },
   components: {

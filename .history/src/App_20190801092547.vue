@@ -1,11 +1,7 @@
 <template>
   <div id="app" class="app-container">
     <!-- Header -->
-    <mt-header fixed title="帅气阿岱的firstVue">
-      <span  slot="left" @click="goBack" v-show="flag">
-        <mt-button icon="back">返回</mt-button>
-      </span>
-    </mt-header>
+    <mt-header fixed title="帅气阿岱的firstVue"></mt-header>
     <transition>
       <router-view></router-view>
     </transition>
@@ -35,44 +31,22 @@
 
 <script>
 export default {
-  name: "App",
-  data() {
-    return {
-      flag:false
-    }
-  },
-  methods: {
-    goBack(){
-      this.$router.go(-1);
-    }
-  },
-  created() {
-    this.flag=this.$route.path==='/home'?false:true;
-  },
-  watch: {
-    '$route.path':function(newVal){
-      if(newVal === '/home'){
-        this.flag=false;
-      }else{
-        this.flag=true;
-      }
-    }
-  }
+  name: "App"
 };
 </script>
 
 <style lang="scss" scoped>
-.v-enter {
+.v-enter{
   opacity: 0;
   transform: translateX(100%);
 }
-.v-leave-to {
+.v-leave-to{
   opacity: 0;
   transform: translateX(-100%);
   position: absolute;
-}
+} 
 .v-enter-active,
-.v-leave-active {
+.v-leave-active{
   transition: all 0.5s ease;
 }
 
@@ -80,17 +54,18 @@ export default {
 //   font-family: "Avenir", Helvetica, Arial, sans-serif;
 //   -webkit-font-smoothing: antialiased;
 //   -moz-osx-font-smoothing: grayscale;
-//   text-align: center;
+//   text-align: center; 
 //   color: #2c3e50;
 //   margin-top: 60px;
 // }
-.app-container {
+.app-container{
   padding-top: 40px;
   overflow-x: hidden;
   padding-bottom: 55px;
   background-color: white;
 }
-.mint-header {
+.mint-header{
   z-index: 99;
 }
+
 </style>

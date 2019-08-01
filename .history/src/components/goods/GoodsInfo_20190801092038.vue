@@ -77,6 +77,7 @@ export default {
         if (response.body.status === 1) {
           this.lunbotuList = response.body.god.imgIntro;
           this.goodsinfo = response.body.god;
+          console.log(this.goodsinfo);
         } else {
           Toast("加载数据失败:)");
         }
@@ -85,7 +86,7 @@ export default {
     addToShopCar() {
       this.ballFlag = !this.ballFlag;
       var goodsinfo = {
-        id:parseInt(this.id),
+        id:this.id,
         count:this.selectedCount,
         price:this.goodsinfo.newPrice,
         selected:true
@@ -130,6 +131,7 @@ export default {
     },
     getSelectedCount(data) {
       this.selectedCount = data;
+      console.log("当前选中的数量为：" + this.selectedCount);
     }
   },
   components: {

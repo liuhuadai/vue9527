@@ -46,14 +46,9 @@ export default {
       this.$router.go(-1);
     }
   },
-  created() {
-    this.flag=this.$route.path==='/home'?false:true;
-  },
   watch: {
     '$route.path':function(newVal){
       if(newVal === '/home'){
-        this.flag=false;
-      }else{
         this.flag=true;
       }
     }

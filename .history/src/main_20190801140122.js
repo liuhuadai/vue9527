@@ -84,7 +84,7 @@ const store = new Vuex.Store({
     getAllCount(state){
       var c = 0;
       state.car.forEach(item=>{
-        c+=parseInt(item.count);
+        c+=item.count;
       })
       return parseInt(c);
     },

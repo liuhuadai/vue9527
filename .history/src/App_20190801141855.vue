@@ -2,9 +2,9 @@
   <div id="app" class="app-container">
     <!-- Header -->
     <mt-header fixed title="帅气阿岱的firstVue">
-      <span  slot="left" @click="goBack" v-show="flag">
+      <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
-      </span>
+      </router-link>
     </mt-header>
     <transition>
       <router-view></router-view>
@@ -35,29 +35,7 @@
 
 <script>
 export default {
-  name: "App",
-  data() {
-    return {
-      flag:false
-    }
-  },
-  methods: {
-    goBack(){
-      this.$router.go(-1);
-    }
-  },
-  created() {
-    this.flag=this.$route.path==='/home'?false:true;
-  },
-  watch: {
-    '$route.path':function(newVal){
-      if(newVal === '/home'){
-        this.flag=false;
-      }else{
-        this.flag=true;
-      }
-    }
-  }
+  name: "App"
 };
 </script>
 

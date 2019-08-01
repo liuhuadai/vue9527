@@ -5,16 +5,13 @@
       <div class="mui-card" v-for="item in goodslist" :key="item.godId">
         <div class="mui-card-content">
           <div class="mui-card-content-inner">
-            <mt-switch
-              v-model="$store.getters.getGoodsSelected[item.godId]"
-              @change="selectedChanged(item.godId, $store.getters.getGoodsSelected[item.godId])"
-            ></mt-switch>
+            <mt-switch></mt-switch>
             <img :src="item.phos[0]" />
             <div class="info">
               <h1>{{ item.name }}</h1>
               <p>
                 <span class="price">￥{{ item.newPrice }}</span>
-                <numbox :initcount="$store.getters.getGoodsCount[item.godId]" :goodsid="item.godId"></numbox>
+                <numbox :initCount="$store.getters.getGoodsSelected[item.godId]"></numbox>
                 <!-- 问题：如何从购物车中获取商品的数量呢 -->
                 <!-- 1. 我们可以先创建一个 空对象，然后循环购物车中所有商品的数据， 把 当前循环这条商品的 Id， 作为 对象 的 属性名，count值作为 对象的 属性值，这样，当把所有的商品循环一遍，就会得到一个对象： { 88: 2, 89: 1, 90: 4 } -->
                 <a href="#">删除</a>
@@ -33,21 +30,20 @@
             <p>总计（不含运费）</p>
             <p>
               已勾选商品
-              <span class="red">{{ $store.getters.getGoodsCountAndAmount.count }}</span>
-              件， 总价
-              <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span>
+              <span class="red"></span> 件， 总价
+              <span class="red">￥</span>
             </p>
           </div>
-          <mt-button type="danger" @click.native="handleClick">去结算</mt-button>
+          <mt-button type="danger">去结算</mt-button>
         </div>
       </div>
     </div>
 
+    <p></p>
   </div>
 </template>
 
 <script>
-import { MessageBox } from 'mint-ui';
 import numbox from "../subcomponents/shopcar_numbox.vue";
 
 export default {
@@ -73,17 +69,11 @@ export default {
         this.$http.get("api/getgoddetail?godId=" + idArr[i]).then(result => {
           if (result.body.status === 1) {
             this.goodslist = this.goodslist.concat(result.body.god);
+            console.log(this.goodslist)
           }
         });
       }
-    },
-    selectedChanged(id, val) {
-      // 每当点击开关，把最新的 快关状态，同步到 store 中
-      console.log(id + " --- " + val);
-      this.$store.commit("updateGoodsSelected", { id, selected: val });
-    },
-    handleClick(){
-        MessageBox('提示', '当前还未开通支付功能！');
+      console.log(this.goodslist)
     }
   },
   components: {
